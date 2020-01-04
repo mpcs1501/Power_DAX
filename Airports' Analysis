@@ -61,3 +61,13 @@ IF(
 	RETURN
 		DIVIDE([TotalFlights] - __PREV_MONTH, __PREV_MONTH)
 )
+
+
+10. YTD Constant sums all the flights that we had yaer over year without filters.
+
+Accumulated Flights = CALCULATE([TotalFlights],Filter(All(Months),Months[Custom]<=MAX(Months[Custom])))
+
+
+11. YTD Dinamic, works with all the filters in the model.
+
+Accumulated Flights = CALCULATE([TotalFlights],Filter(AllSELECTED(Months),Months[Custom]<=MAX(Months[Custom])))
