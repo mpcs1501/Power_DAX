@@ -1,0 +1,63 @@
+Airports RFP Documentation
+
+1. First thing isto find the total amount of flights. Because of the datamart that we have this is 
+going to segment itself in a table.
+
+TotalFlights = SUM(fFlights[Flights])
+
+
+2. Second thing is to find the toatl flights in ATL Region.  
+
+TotalFlights for Atlantic Canada = 
+CALCULATE([TotalFlights], 'Airports'[Region] IN { "Atlantic Canada" })
+
+
+3. Dividing the two we'll  have a percentage of the total segmented by year.
+
+% ATL = [TotalFlights for Atlantic Canada]/[TotalFlights]
+
+
+4. In order to have a percentage of yearly results we need alocked flights amount. The 
+ALL filter is not going to allow any filter to work on that number.
+
+LockedFlights = CALCULATE([TotalFlights], ALL(fFlights))
+
+
+5. Next you just divide it in order to have the percentage required.
+
+% Total Flights = [TotalFlights]/[LockedFlights]
+
+
+6. The segmented flights will show us the % using all the filters in the model. The ALLSELECTED
+filter is going to be the responsible for that. 
+
+SegmentedFlights = CALCULATE([TotalFlights], ALLSELECTED(fFlights))
+
+
+7. Dividing in order to achieve the dinamic %
+
+% Segmented = [TotalFlights]/[SegmentedFlights]
+
+
+8. Year over YEAR using quick measures.
+
+YoY% = 
+IF(
+	ISFILTERED('Months'[Custom]),
+	ERROR("Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column."),
+	VAR __PREV_YEAR = CALCULATE([TotalFlights], DATEADD('Months'[Custom].[Date], -1, YEAR))
+	RETURN
+		DIVIDE([TotalFlights] - __PREV_YEAR, __PREV_YEAR)
+)
+
+
+9. Month over Month using quick measures.
+
+MoM% = 
+IF(
+	ISFILTERED('Months'[Custom]),
+	ERROR("Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column."),
+	VAR __PREV_MONTH = CALCULATE([TotalFlights], DATEADD('Months'[Custom].[Date], -1, MONTH))
+	RETURN
+		DIVIDE([TotalFlights] - __PREV_MONTH, __PREV_MONTH)
+)
