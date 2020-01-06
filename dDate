@@ -1,0 +1,9 @@
+Power_Query
+Nova_Consulta
+Consulta_Nula
+=List.Min(fPedidos[Data] & fDevolucoes[Data])     -- Renomeia fonte no Editor Avancado para "DataMin"
+=List.Max(fPedidos[Data] & fDevolucoes[Data])     -- Renomeia no menu para "DataMax"
+Fx----Duration.Days(DataMax - DataMin)+1          -- Vai te dar qtd de dias, Renomeia para "QtdDias"
+List.Dates(DataMin, QtdDias, #duration(1,0,0,0))  -- Tabela de datas
+Para tabela
+Coverta dados para data.
