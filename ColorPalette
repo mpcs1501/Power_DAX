@@ -1,12 +1,12 @@
 {
 
- "name": "Planilheiros",
+ "name": "Google",
  
- "dataColors": [ , , , , , , , , , ],
+ "dataColors": [ "#FEFEFE", "#2F83FA", "#FB3324", "#FBBB07", "#FBDCC4", "#20AF46", "#BDDCF8", "#FA9F7A", "#79ACF8", "#4DBC6B" ],
  
- "background": " ",
+ "background": "#FEFEFE",
  
- "foreground": " ",
+ "foreground": "#FEFEFE",
  
- "tableAccent": " "
+ "tableAccent": "#FEFEFE"
  }
