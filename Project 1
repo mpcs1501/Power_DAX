@@ -1,0 +1,35 @@
+DAX
+//
+
+Count of Flights = COUNTROWS(Table)
+// Fuel Consumption = TakeOffFuel - LandingFuel
+
+Power Query
+// Add new columns and Remove all the columns that you dont need. 
+// Columns like Time Serial, Comercial Flight, MKT Flight, Delays, Scheduled and Actual Departure Time + GMT, 
+// Cancellations and Cancellations Type(From lookup table).
+
+1. Cancellations, Delays and On-time
+// Conditional Column -> If there a Cancellation code then "Cancelled", 
+                      ELIF Actual departure Time > Scheduled departure time then "Delayed"  
+                      ELIF Actual departure Time <= Scheduled departure time then "On-time"
+                      
+2. Merge Flight numbers and Codes
+
+3. Cancellation Tipe
+//Join with lookup table
+
+4. Scheduled and Actual departure time
+// Split columns and merge the required ones.
+
+5. Serial Hours
+// Differently from DATEDIFF this function wont round up the hours adding more to the counting 
+// Serial Hours = 24 * ([ArrivalUTC] - [DepartureUTC])
+
+6. Last Data Update
+DAX
+//Current Time and Hour = NOW()
+New Table and Code in M
+//Last Update
+// Get Data - Blank Query - Fx = DateTime.LocalNow()
+// Name: Last Data Updated
