@@ -1,0 +1,9 @@
+Import
+//Faster
+
+Direct Query
+//Slower, Lose power query and Manipulation.
+Need Server password and gateway
+Can set up refreshes
+
+Import > Choose Azure or SSMS > Server Log in > Choose Tables
